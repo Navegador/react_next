@@ -1,5 +1,10 @@
 import React from 'react';
 import {Node, TreeNodeProps} from '../../interface/Node';
+import style from './TreeNode.module.css';
+
+import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 /*
 interface Props {
     node: {
@@ -14,13 +19,18 @@ interface Props {
 //const TreeNode = ({ node }) => {
 const TreeNode = (TreeNodeProps:{ node:Node }) => {    
   const hasChildren = TreeNodeProps.node.children && TreeNodeProps.node.children.length > 0;
-  
+  console.log(TreeNodeProps);
+
   return (
-    <li>
-      {TreeNodeProps.node.name}
+    
+
+    
+    <li >
+      <FontAwesomeIcon icon={faFolder} size="1x" color="red"  />
+      <span className={style.caret}>{TreeNodeProps.node.name}</span>
+      
       {hasChildren && (
-        <ul>
-            
+        <ul className={style.css_ul} >
           {TreeNodeProps.node.children?.map((childNode, index) => (
             <TreeNode key={index} node={childNode} />
           ))}
